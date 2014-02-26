@@ -37,4 +37,6 @@ public class Sentence {
 	public void setToect(String toect) {
 		this.toect = toect;
 	}
+	
+	
 }
