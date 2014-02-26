@@ -1,16 +1,15 @@
 package com.kasun.run;
 
-import com.kasun.logics.Logics;
+import com.kasun.translate.Translate;
 
 public class Run {
 
 	public static void main(String[] args) {
 
-		Logics logics = new Logics();
+		Translate translate = new Translate();
 
-		String sentence = "Master Lee is a good man";
-		Logics logic = new Logics();
+		String sentence = "He is eating to rice";
 		
-		logic.sentenceDivide(sentence);
+		System.out.println(translate.translate(sentence));
 	}
 }

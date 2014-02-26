@@ -21,11 +21,9 @@ public class Logics {
 		while (i < propsitions.length) {
 			while (j < sntence.length) {
 				if (propsitions[i].equals(sntence[j])) {
-					System.out.println("propsitions[i] "+propsitions[i]);
 					k++;
 					break;
 				}
-				System.out.println("");
 				j++;
 			}
 			if (k == 1) {
@@ -53,11 +51,9 @@ public class Logics {
 		while (i < toect.length) {
 			while (j < sntence.length) {
 				if (toect[i].equals(sntence[j])) {
-					System.out.println("toect[i] "+toect[i]);
 					k++;
 					break;
 				}
-				System.out.println("");
 				j++;
 			}
 			if (k == 1) {
@@ -69,27 +65,24 @@ public class Logics {
 		return j;
 	}
 
-	public void sentenceDivide(String sentence) {
+	public String [] sentenceDivide(String sentence) {
+		String [] arr1 = new String[3];
 		int[] arr = sentenceDividerNumbers(sentence);
 		String[] sntence = splitSentence(sentence);
-		System.out.print("Sentence Subject : ");
 		int i = 0;
-		while (i < arr[1]) {
-			System.out.print(sntence[i] + " ");
+		while (i < arr[0]) {
 			i++;
 		}
-		System.out.println();
-		System.out.print("Sentence Verb : ");
+		arr1[0] = sntence[0];
 
-		System.out.print(sntence[i + 1] + " ");
+		arr1[1] = sntence[i + 1];
 
-		i = arr[1];
+		i = arr[1]+1;
 
-		System.out.println();
-		System.out.print("Sentence Object : ");
 		while (i < sntence.length) {
-			System.out.print(sntence[i] + " ");
+			i++;
 		}
-
+		arr1[2] = sntence[i-1];
+		return arr1;
 	}
 }
