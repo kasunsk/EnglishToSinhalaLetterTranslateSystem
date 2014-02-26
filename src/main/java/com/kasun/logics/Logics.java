@@ -1,7 +1,5 @@
 package com.kasun.logics;
 
-import java.util.Arrays;
-
 public class Logics {
 
 	private String[] propsitions = { "is", "am", "are", "was", "were", "be" };
