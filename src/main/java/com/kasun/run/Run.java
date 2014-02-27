@@ -4,12 +4,12 @@ import com.kasun.translate.Translate;
 
 public class Run {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		Translate translate = new Translate();
+        Translate translate = new Translate();
 
-		String sentence = "He is eating to rice";
-		
-		System.out.println(translate.translate(sentence));
-	}
+        String sentence = "Teacher is reading book";
+
+        System.out.println(translate.translate(sentence));
+    }
 }

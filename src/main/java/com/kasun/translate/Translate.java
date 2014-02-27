@@ -7,6 +7,9 @@ public class Translate {
     private String[] englishSubject = { "I", "He", "Teacher", "Student", "You", "Mother", "Father", "Farmer" };
     private String[] sinhalaSubject = { "මම", "ඔහු", "ගුරුවරයා", "ළමයා", "ඔබ", "අම්මා", "තාත්තා", "ගොවියා" };
 
+    private String[] englishSubjectPlurel = { "We", "They" };
+    private String[] sinhalaSubjectPlurel = { "අපි", "ඔව්න්" };
+
     private String[] englishVerb = { "coming", "eating", "drinking", "riding", "runing", "kissing", "reading", "going" };
     private String[] sinhalaVerb = { "යමින්", "කමින්", "බොමින්", "පදිමින්", "දුවමින්", "හාදු දෙමින්", "කියවමින්", "යමින්" };
 
@@ -17,7 +20,7 @@ public class Translate {
 
     public String translate(String sntence) {
         String[] sentence = logic.sentenceDivide(sntence);
-        
+        int tence = 0;
         String wordSubject = "";
         String wordVerb = "";
         String wordObject = "";
@@ -30,7 +33,17 @@ public class Translate {
             }
             i++;
         }
-        
+
+        i = 0;
+        while (englishSubjectPlurel.length > i) {
+            if (sentence[0].equals(englishSubjectPlurel[i])) {
+                tence = 1;
+                wordSubject = sinhalaSubjectPlurel[i];
+                break;
+            }
+            i++;
+        }
+
         i = 0;
         while (englishVerb.length > i) {
             if (sentence[1].equals(englishVerb[i])) {
@@ -39,7 +52,7 @@ public class Translate {
             }
             i++;
         }
-        
+
         i = 0;
         while (englishObject.length > i) {
             if (sentence[2].equals(englishObject[i])) {
@@ -48,9 +61,16 @@ public class Translate {
             }
             i++;
         }
-        i=0;
-
-        return (wordSubject+" "+wordObject+" "+wordVerb+" සිටිනවා");
+        i = 0;
+        if (sentence[0].equals("I")) {
+            return (wordSubject + " " + wordObject + " " + wordVerb + " සිටින්නෙමි.");
+        } else if (sentence[0].equals("We")) {
+            return (wordSubject + " " + wordObject + " " + wordVerb + " සිටින්නෙමු.");
+        } else if (tence == 0) {
+            return (wordSubject + " " + wordObject + " " + wordVerb + " සිටියි.");
+        } else {
+            return (wordSubject + " " + wordObject + " " + wordVerb + " සිටිති.");
+        }
     }
 
 }
