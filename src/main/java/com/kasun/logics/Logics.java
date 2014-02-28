@@ -85,4 +85,5 @@ public class Logics {
         arr1[2] = sntence[i - 1];
         return arr1;
     }
+
 }

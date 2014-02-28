@@ -1,15 +1,16 @@
 package com.kasun.run;
 
-import com.kasun.translate.Translate;
+import com.kasun.translate.sentences.TranslatePresentCountinues;
 
 public class Run {
 
     public static void main(String[] args) {
 
-        Translate translate = new Translate();
+        TranslatePresentCountinues translatePresentCountinues = new TranslatePresentCountinues();
 
-        String sentence = "Teacher is reading book";
+        String sentence = "They are eating rice";
 
-       // System.out.println(translate.translate(sentence));
+        System.out.println(translatePresentCountinues.getSinhalaMeaning(sentence));
+
     }
 }
