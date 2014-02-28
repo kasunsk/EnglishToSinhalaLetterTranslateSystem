@@ -10,6 +10,6 @@ public class Run {
 
         String sentence = "Teacher is reading book";
 
-        System.out.println(translate.translate(sentence));
+       // System.out.println(translate.translate(sentence));
     }
 }
