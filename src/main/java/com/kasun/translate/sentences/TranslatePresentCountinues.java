@@ -5,8 +5,8 @@ import com.kasun.translate.Translate;
 
 public class TranslatePresentCountinues implements Translate {
 
-    private String[] englishSubject = { "I", "He", "Teacher", "Student", "You", "Mother", "Father", "Farmer" };
-    private String[] sinhalaSubject = { "මම", "ඔහු", "ගුරුවරයා", "ළමයා", "ඔබ", "අම්මා", "තාත්තා", "ගොවියා" };
+    private String[] englishSubject = { "I", "He","She", "Teacher", "Student", "You", "Mother", "Father", "Farmer" };
+    private String[] sinhalaSubject = { "මම", "ඔහු","ඇය", "ගුරුවරයා", "ළමයා", "ඔබ", "අම්මා", "තාත්තා", "ගොවියා" };
 
     private String[] englishSubjectPlurel = { "We", "They" };
     private String[] sinhalaSubjectPlurel = { "අපි", "ඔව්න්" };
