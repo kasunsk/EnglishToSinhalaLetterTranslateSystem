@@ -1,16 +1,18 @@
-package com.kasun.logics;
+package com.kasun.logics.translate;
 
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class LogicsUnitTest {
+import com.kasun.logics.translate.LogicsPresentContinuesLogics;
 
-    Logics logics = new Logics();
+public class LogicsPresentContinuesUnitTest {
+
+    LogicsPresentContinuesLogics logicsPresentContinuesLogics = new LogicsPresentContinuesLogics();
 
     @Test(dataProvider = "addDataProvider")
     public void testSplitSentence(String sentence, String[] expected) {
-        String[] words = logics.splitSentence(sentence);
+        String[] words = logicsPresentContinuesLogics.splitSentence(sentence);
         Assert.assertEquals(expected, words);
     }
 
@@ -23,7 +25,7 @@ public class LogicsUnitTest {
 
     @Test(dataProvider = "addDataProviderToCheckTence")
     public void testGetTence(String sentence, int expected) {
-        int tence = logics.getTence(sentence);
+        int tence = logicsPresentContinuesLogics.getTence(sentence);
         Assert.assertEquals(expected, tence);
     }
 

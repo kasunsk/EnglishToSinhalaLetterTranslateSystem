@@ -8,7 +8,7 @@ public class Run {
 
         TranslatePresentCountinues translatePresentCountinues = new TranslatePresentCountinues();
 
-        String sentence = "They are kissing him";
+        String sentence = "Teacher was reading a book";
 
         System.out.println(translatePresentCountinues.getSinhalaMeaning(sentence));
 

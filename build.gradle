@@ -1,10 +1,11 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
+apply plugin: 'war'
 
 version = '1.0'
 
-jar {
+war {
    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
    manifest { attributes 'Main-Class': 'com.kasun.run.Run' }
 }
