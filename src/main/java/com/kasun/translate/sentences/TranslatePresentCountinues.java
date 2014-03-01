@@ -5,8 +5,8 @@ import com.kasun.translate.Translate;
 
 public class TranslatePresentCountinues implements Translate {
 
-    private String[] englishSubject = { "I", "He","She", "Teacher", "Student", "You", "Mother", "Father", "Farmer" };
-    private String[] sinhalaSubject = { "මම", "ඔහු","ඇය", "ගුරුවරයා", "ළමයා", "ඔබ", "අම්මා", "තාත්තා", "ගොවියා" };
+    private String[] englishSubject = { "I", "He", "She", "Teacher", "Student", "You", "Mother", "Father", "Farmer" };
+    private String[] sinhalaSubject = { "මම", "ඔහු", "ඇය", "ගුරුවරයා", "ළමයා", "ඔබ", "අම්මා", "තාත්තා", "ගොවියා" };
 
     private String[] englishSubjectPlurel = { "We", "They" };
     private String[] sinhalaSubjectPlurel = { "අපි", "ඔව්න්" };
@@ -26,12 +26,17 @@ public class TranslatePresentCountinues implements Translate {
     String wordObject = "";
 
     private int subjectValue = 0;
+    private int tence = 0;
 
     Logics logic = new Logics();
 
     public void setSentence(String sntnce) {
         String[] sentence = logic.sentenceDivide(sntnce);
         this.sentence = sentence;
+    }
+
+    public void setTence(String sntnce) {
+        this.tence = logic.getTence(sntnce);
     }
 
     public String getSubjectTranslated() {
@@ -48,7 +53,6 @@ public class TranslatePresentCountinues implements Translate {
             if (sentence[0].equals(englishSubjectPlurel[i])) {
                 this.subjectValue = 1;
                 wordSubject = sinhalaSubjectPlurel[i];
-                System.out.println("subjectValue : " + this.subjectValue);
                 break;
             }
             i++;
@@ -103,19 +107,10 @@ public class TranslatePresentCountinues implements Translate {
     public String getSinhalaMeaning(String sentec) {
         TranslatePresentCountinues translatePresentCountinues = new TranslatePresentCountinues();
         translatePresentCountinues.setSentence(sentec);
+
         String objectValue = translatePresentCountinues.getObjectValue(sentec);
         String objectValueDefiner = "";
-        String sentenceEnd = "සිටියි";
-
-        if (translatePresentCountinues.sentence[0].equals("I")) {
-            sentenceEnd = "සිටින්නෙමි";
-        } else if (translatePresentCountinues.sentence[0].equals("We")) {
-            sentenceEnd = "සිටින්නෙමු";
-        } else if (subjectValue == 1) {
-            sentenceEnd = "සිටිති";
-        }
-
-        System.out.println("subjectValue : " + this.subjectValue);
+        String sentenceEnd = translatePresentCountinues.getSentenceEnd(sentec);
 
         if (objectValue.equals("a") || objectValue.equals("an")) {
             objectValueDefiner = "ක්";
@@ -127,4 +122,33 @@ public class TranslatePresentCountinues implements Translate {
 
         return sinhalaMeaning;
     }
+
+    public String getSentenceEnd(String sentec) {
+        TranslatePresentCountinues translatePresentCountinues = new TranslatePresentCountinues();
+        translatePresentCountinues.setSentence(sentec);
+        translatePresentCountinues.setTence(sentec);
+        translatePresentCountinues.getSubjectTranslated();
+        
+        int tence = translatePresentCountinues.tence;
+        
+        String sentenceEnd = "සිටියි";
+
+        if (translatePresentCountinues.sentence[0].equals("I") && tence == 0) {
+            sentenceEnd = "සිටින්නෙමි";
+        } else if (translatePresentCountinues.sentence[0].equals("I") && tence == 1) {
+            sentenceEnd = "සිටියෙමි";
+        } else if (translatePresentCountinues.sentence[0].equals("We") && tence == 1) {
+            sentenceEnd = "සිටියෙමු";
+        } else if (translatePresentCountinues.sentence[0].equals("We")) {
+            sentenceEnd = "සිටින්නෙමු";
+        } else if (translatePresentCountinues.subjectValue == 1) {
+            sentenceEnd = "සිටිති";
+        } else if (translatePresentCountinues.subjectValue == 1 && tence == 1) {
+            sentenceEnd = "සිටියෝය";
+        } else if (tence == 1) {
+            sentenceEnd = "සිටියේය";
+        }
+        return sentenceEnd;
+    }
+
 }

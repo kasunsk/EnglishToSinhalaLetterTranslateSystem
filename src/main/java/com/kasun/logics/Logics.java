@@ -6,11 +6,26 @@ public class Logics {
 
     private String[] propsitions = { "is", "am", "are", "was", "were", "be" };
     private String[] toect = { "to", "for", "from" };
+    
 
     public String[] splitSentence(String sentence) {
         String words[];
         words = sentence.split(" ");
         return words;
+    }
+    
+    public int getTence(String sentence){
+        Logics logics = new Logics();
+        String words [] =  sentence.split(" ");
+        int propsitionsLocation = logics.sentenceDividerNumbers(sentence)[0];
+        String propsition = words[propsitionsLocation];
+        if(propsition.equals("is") || propsition.equals("are") || propsition.equals("am")){
+            return 0;
+        }else if(propsition.equals("was") || propsition.equals("were")){
+            return 1;
+        }else{
+            return 2;
+        }
     }
 
     public int beDitector(String sentence) {
