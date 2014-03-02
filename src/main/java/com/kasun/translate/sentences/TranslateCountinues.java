@@ -1,9 +1,9 @@
 package com.kasun.translate.sentences;
 
-import com.kasun.logics.translate.LogicsPresentContinuesLogics;
+import com.kasun.logics.translate.ContinuesLogics;
 import com.kasun.translate.Translate;
 
-public class TranslatePresentCountinues implements Translate {
+public class TranslateCountinues implements Translate {
 
     private String[] englishSubject = { "I", "He", "She", "Teacher", "Student", "You", "Mother", "Father", "Farmer" };
     private String[] sinhalaSubject = { "මම", "ඔහු", "ඇය", "ගුරුවරයා", "ළමයා", "ඔබ", "අම්මා", "තාත්තා", "ගොවියා" };
@@ -28,7 +28,7 @@ public class TranslatePresentCountinues implements Translate {
     private int subjectValue = 0;
     private int tence = 0;
 
-    LogicsPresentContinuesLogics logic = new LogicsPresentContinuesLogics();
+    ContinuesLogics logic = new ContinuesLogics();
 
     public void setSentence(String sntnce) {
         String[] sentence = logic.sentenceDivide(sntnce);
@@ -105,45 +105,45 @@ public class TranslatePresentCountinues implements Translate {
 
     @Override
     public String getSinhalaMeaning(String sentec) {
-        TranslatePresentCountinues translatePresentCountinues = new TranslatePresentCountinues();
-        translatePresentCountinues.setSentence(sentec);
+        TranslateCountinues translateCountinues = new TranslateCountinues();
+        translateCountinues.setSentence(sentec);
 
-        String objectValue = translatePresentCountinues.getObjectValue(sentec);
+        String objectValue = translateCountinues.getObjectValue(sentec);
         String objectValueDefiner = "";
-        String sentenceEnd = translatePresentCountinues.getSentenceEnd(sentec);
+        String sentenceEnd = translateCountinues.getSentenceEnd(sentec);
 
         if (objectValue.equals("a") || objectValue.equals("an")) {
             objectValueDefiner = "ක්";
         }
 
-        String sinhalaMeaning = translatePresentCountinues.getSubjectTranslated() + " "
-                + translatePresentCountinues.getObjectTranslated() + objectValueDefiner + " "
-                + translatePresentCountinues.getVerbTranslated() + " " + sentenceEnd + ".";
+        String sinhalaMeaning = translateCountinues.getSubjectTranslated() + " "
+                + translateCountinues.getObjectTranslated() + objectValueDefiner + " "
+                + translateCountinues.getVerbTranslated() + " " + sentenceEnd + ".";
 
         return sinhalaMeaning;
     }
 
     public String getSentenceEnd(String sentec) {
-        TranslatePresentCountinues translatePresentCountinues = new TranslatePresentCountinues();
-        translatePresentCountinues.setSentence(sentec);
-        translatePresentCountinues.setTence(sentec);
-        translatePresentCountinues.getSubjectTranslated();
+        TranslateCountinues translateCountinues = new TranslateCountinues();
+        translateCountinues.setSentence(sentec);
+        translateCountinues.setTence(sentec);
+        translateCountinues.getSubjectTranslated();
         
-        int tence = translatePresentCountinues.tence;
+        int tence = translateCountinues.tence;
         
         String sentenceEnd = "සිටියි";
 
-        if (translatePresentCountinues.sentence[0].equals("I") && tence == 0) {
+        if (translateCountinues.sentence[0].equals("I") && tence == 0) {
             sentenceEnd = "සිටින්නෙමි";
-        } else if (translatePresentCountinues.sentence[0].equals("I") && tence == 1) {
+        } else if (translateCountinues.sentence[0].equals("I") && tence == 1) {
             sentenceEnd = "සිටියෙමි";
-        } else if (translatePresentCountinues.sentence[0].equals("We") && tence == 1) {
+        } else if (translateCountinues.sentence[0].equals("We") && tence == 1) {
             sentenceEnd = "සිටියෙමු";
-        } else if (translatePresentCountinues.sentence[0].equals("We") && tence == 0) {
+        } else if (translateCountinues.sentence[0].equals("We") && tence == 0) {
             sentenceEnd = "සිටින්නෙමු";
-        } else if (translatePresentCountinues.subjectValue == 1 && tence == 1) {
+        } else if (translateCountinues.subjectValue == 1 && tence == 1) {
             sentenceEnd = "සිටියෝය";
-        } else if (translatePresentCountinues.subjectValue == 1 && tence == 0) {
+        } else if (translateCountinues.subjectValue == 1 && tence == 0) {
             sentenceEnd = "සිටිති";
         } else if (tence == 1) {
             sentenceEnd = "සිටියේය";

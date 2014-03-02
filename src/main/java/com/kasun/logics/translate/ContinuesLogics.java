@@ -2,7 +2,7 @@ package com.kasun.logics.translate;
 
 import com.kasun.logics.Logics;
 
-public class LogicsPresentContinuesLogics implements Logics{
+public class ContinuesLogics implements Logics{
 
     private String[] propsitions = { "is", "am", "are", "was", "were", "be" };
     private String[] toect = { "to", "for", "from" };
@@ -16,9 +16,9 @@ public class LogicsPresentContinuesLogics implements Logics{
     
     @Override
     public int getTence(String sentence){
-        LogicsPresentContinuesLogics logicsPresentContinuesLogics = new LogicsPresentContinuesLogics();
+        ContinuesLogics continuesLogics = new ContinuesLogics();
         String words [] =  sentence.split(" ");
-        int propsitionsLocation = logicsPresentContinuesLogics.sentenceDividerNumbers(sentence)[0];
+        int propsitionsLocation = continuesLogics.sentenceDividerNumbers(sentence)[0];
         String propsition = words[propsitionsLocation];
         if(propsition.equals("is") || propsition.equals("are") || propsition.equals("am")){
             return 0;

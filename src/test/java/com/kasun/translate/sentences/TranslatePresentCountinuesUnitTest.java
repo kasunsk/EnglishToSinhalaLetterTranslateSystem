@@ -4,17 +4,17 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.kasun.translate.sentences.TranslatePresentCountinues;
+import com.kasun.translate.sentences.TranslateCountinues;
 
 public class TranslatePresentCountinuesUnitTest {
 
-    TranslatePresentCountinues translatePresentCountinues = new TranslatePresentCountinues();
+    TranslateCountinues translateCountinues = new TranslateCountinues();
 
     @Test(dataProvider = "addDataProvider")
     public void testGetObjectValue(String sentence, String expected) {
 
-        translatePresentCountinues.setSentence(sentence);
-        String objectvalue = translatePresentCountinues.getObjectValue(sentence);
+        translateCountinues.setSentence(sentence);
+        String objectvalue = translateCountinues.getObjectValue(sentence);
         Assert.assertEquals(expected, objectvalue);
     }
 
