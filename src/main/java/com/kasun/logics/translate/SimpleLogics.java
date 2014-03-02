@@ -11,6 +11,8 @@ public class SimpleLogics implements Logics {
 
     private String[] verbsPrasentSingulerMeaning = { "යයි", "එයි", "කයි", "දුවයි", "කියවයි" };
     private String[] verbsPrasentPlurelMeaning = { "යති", "එති", "කති", "දුවති", "කියවති" };
+    private String[] verbsPastSingulerMeaning = {"ගියේය", "අවේය", "කෑවේය", "දිව්වේය", "කියෙව්වේය" };
+    private String[] verbsPastPlurelMeaning = {"ගියෝය", "ආවෝය", "කෑවෝය", "දිව්වෝය", "කියෙව්වෝය"};
 
     String verbMeaning = "kasun";
     String Subject = "SuBJect";
@@ -67,13 +69,19 @@ public class SimpleLogics implements Logics {
         String verbEnd = verb.substring(verb.length() - 1, verb.length());
         String verbEndPlurel = verb.substring(verb.length() - 2, verb.length());
         if(verbEndPlurel.equals("es")){
+            if(SubjectValue == 1){
+                System.out.println("Your Sentence look likes wrong");
+            }
             verb = verb.substring(0, verb.length()-2);
         }else if(verbEnd.equals("s")){
+            if(SubjectValue == 1){
+                System.out.println("Your Sentence looks like wrong...");
+            }
             verb = verb.substring(0, verb.length()-1);
         }
         
         int i = 0;
-        while (i <= verbsPast.length) {
+        while (i < verbsPrasent.length) {
             if (verb.equals(verbsPrasent[i])) {
                 if (SubjectValue == 0) {
                     this.verbMeaning = verbsPrasentSingulerMeaning[i];
@@ -81,6 +89,19 @@ public class SimpleLogics implements Logics {
                     this.verbMeaning = verbsPrasentPlurelMeaning[i];
                 }
                 this.tence = 1;
+                break;
+            }
+            i++;
+        }
+        i = 0;
+        while(i < verbsPast.length){
+            if(verb.equals(verbsPast[i])){
+                if(SubjectValue == 0){
+                    this.verbMeaning = verbsPastSingulerMeaning[i];
+                } else if (SubjectValue == 1) {
+                    this.verbMeaning = verbsPastPlurelMeaning[i];
+                }
+                this.tence = 0;
                 break;
             }
             i++;
