@@ -1,8 +1,14 @@
 package com.kasun.logics.translate;
 
 import com.kasun.logics.Logics;
+import com.kasun.translate.sentences.TranslateSimple;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SimpleLogics implements Logics {
+
+    private static final Logger log = LoggerFactory.getLogger(TranslateSimple.class);
 
     private String[] toect = { "to", "for", "from" };
 
@@ -11,16 +17,14 @@ public class SimpleLogics implements Logics {
 
     private String[] verbsPrasentSingulerMeaning = { "යයි", "එයි", "කයි", "දුවයි", "කියවයි" };
     private String[] verbsPrasentPlurelMeaning = { "යති", "එති", "කති", "දුවති", "කියවති" };
-    private String[] verbsPastSingulerMeaning = {"ගියේය", "අවේය", "කෑවේය", "දිව්වේය", "කියෙව්වේය" };
-    private String[] verbsPastPlurelMeaning = {"ගියෝය", "ආවෝය", "කෑවෝය", "දිව්වෝය", "කියෙව්වෝය"};
+    private String[] verbsPastSingulerMeaning = { "ගියේය", "අවේය", "කෑවේය", "දිව්වේය", "කියෙව්වේය" };
+    private String[] verbsPastPlurelMeaning = { "ගියෝය", "ආවෝය", "කෑවෝය", "දිව්වෝය", "කියෙව්වෝය" };
 
     String verbMeaning = "kasun";
     String Subject = "SuBJect";
 
     int tence = 0;
     int SubjectValue = 0;
-
-    // PresentSimpleLogics presentSimpleLogics = new PresentSimpleLogics();
 
     public void setSubjectValue(String sentence) {
         String[] words = splitSentence(sentence);
@@ -29,26 +33,29 @@ public class SimpleLogics implements Logics {
         String twoFinalCharactor = subject.substring(subject.length() - 2, subject.length());
         if (finalCharactor.equals("s"))// || twoFinalCharactor.equals("es") || subject.equals("They")) {
         {
-            this.Subject = subject.substring(0, subject.length()-1);
+            this.Subject = subject.substring(0, subject.length() - 1);
             this.SubjectValue = 1;
-        }else if(twoFinalCharactor.equals("es")){
-            this.Subject = subject.substring(0, subject.length()-2);
+        } else if (twoFinalCharactor.equals("es")) {
+            this.Subject = subject.substring(0, subject.length() - 2);
             this.SubjectValue = 1;
-        }
-        else if(subject.equals("They")){
+        } else if (subject.equals("They")) {
             this.Subject = "They";
             this.SubjectValue = 1;
-        }else{
+        } else {
             this.Subject = subject;
         }
     }
-    
-    public String getSubject(){
+
+    public String getSubject() {
         return this.Subject;
     }
-    
-    public int getSubjectValue(){
+
+    public int getSubjectValue() {
         return this.SubjectValue;
+    }
+
+    public void setSubjectValue(int value) {
+        this.SubjectValue = value;
     }
 
     @Override
@@ -65,21 +72,24 @@ public class SimpleLogics implements Logics {
 
     public void setTence(String sentence) {
         String[] words = splitSentence(sentence);
+
+        log.info("Subject Value in SimpleLogics " + SubjectValue);
+
         String verb = words[1];
         String verbEnd = verb.substring(verb.length() - 1, verb.length());
         String verbEndPlurel = verb.substring(verb.length() - 2, verb.length());
-        if(verbEndPlurel.equals("es")){
-            if(SubjectValue == 1){
+        if (verbEndPlurel.equals("es")) {
+            if (SubjectValue == 1) {
                 System.out.println("Your Sentence look likes wrong");
             }
-            verb = verb.substring(0, verb.length()-2);
-        }else if(verbEnd.equals("s")){
-            if(SubjectValue == 1){
+            verb = verb.substring(0, verb.length() - 2);
+        } else if (verbEnd.equals("s")) {
+            if (SubjectValue == 1) {
                 System.out.println("Your Sentence looks like wrong...");
             }
-            verb = verb.substring(0, verb.length()-1);
+            verb = verb.substring(0, verb.length() - 1);
         }
-        
+
         int i = 0;
         while (i < verbsPrasent.length) {
             if (verb.equals(verbsPrasent[i])) {
@@ -94,9 +104,9 @@ public class SimpleLogics implements Logics {
             i++;
         }
         i = 0;
-        while(i < verbsPast.length){
-            if(verb.equals(verbsPast[i])){
-                if(SubjectValue == 0){
+        while (i < verbsPast.length) {
+            if (verb.equals(verbsPast[i])) {
+                if (SubjectValue == 0) {
                     this.verbMeaning = verbsPastSingulerMeaning[i];
                 } else if (SubjectValue == 1) {
                     this.verbMeaning = verbsPastPlurelMeaning[i];
@@ -107,8 +117,8 @@ public class SimpleLogics implements Logics {
             i++;
         }
     }
-    
-    public String getVerbMeaning(){
+
+    public String getVerbMeaning() {
         return this.verbMeaning;
     }
 
@@ -151,8 +161,12 @@ public class SimpleLogics implements Logics {
         }
         return arr1;
     }
-    
-   public  String getVerbSinhalaMeaning(){
+
+    public String getVerbSinhalaMeaning() {
         return this.verbMeaning;
+    }
+
+    public void setSimpleLogicsSubjectValue(int subjectvalue) {
+        this.SubjectValue = subjectvalue;
     }
 }

@@ -1,11 +1,14 @@
 package com.kasun.sentence;
 
+import java.util.ArrayList;
+
 public class Sentence {
     private String subject = null;
+    private String beVerb = null;
     private String verb = null;
-    private String object = null;
-    private String propsision = null;
-    private String toect = null;
+    private ArrayList<String> object = null;
+    private ArrayList<String> propsision = null;
+    private ArrayList<String> times = null;
 
     public String getSubject() {
         return subject;
@@ -23,28 +26,36 @@ public class Sentence {
         this.verb = verb;
     }
 
-    public String getObject() {
-        return object;
-    }
-
-    public void setObject(String object) {
-        this.object = object;
-    }
-
-    public String getPropsision() {
+    public ArrayList<String> getPropsision() {
         return propsision;
     }
 
-    public void setPropsision(String propsision) {
+    public void setPropsision(ArrayList<String> propsision) {
         this.propsision = propsision;
     }
 
-    public String getToect() {
-        return toect;
+    public String getBeVerb() {
+        return beVerb;
     }
 
-    public void setToect(String toect) {
-        this.toect = toect;
+    public void setBeVerb(String beVerb) {
+        this.beVerb = beVerb;
     }
 
+    public ArrayList<String> getObject() {
+        return object;
+    }
+
+    public void setObject(ArrayList<String> object) {
+        this.object = object;
+    }
+
+    public ArrayList<String> getTimes() {
+        return times;
+    }
+
+    public void setTimes(ArrayList<String> times) {
+        this.times = times;
+    }
+    
 }

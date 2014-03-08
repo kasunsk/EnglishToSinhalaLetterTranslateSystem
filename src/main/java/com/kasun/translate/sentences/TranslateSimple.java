@@ -3,7 +3,12 @@ package com.kasun.translate.sentences;
 import com.kasun.logics.translate.SimpleLogics;
 import com.kasun.translate.Translate;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class TranslateSimple implements Translate {
+    
+    private static final Logger log = LoggerFactory.getLogger(TranslateSimple.class);
 
     private String[] englishSubject = { "I", "He", "She", "Teacher", "Student", "You", "Mother", "Father", "Farmer" };
     private String[] sinhalaSubject = { "මම", "ඔහු", "ඇය", "ගුරුවරයා", "ළමයා", "ඔබ", "අම්මා", "තාත්තා", "ගොවියා" };
@@ -26,25 +31,25 @@ public class TranslateSimple implements Translate {
 
     SimpleLogics simpleLogics = new SimpleLogics();
 
-    // TranslateSimple translateSimple = new TranslateSimple();
-
     public void setSentence(String sntnce) {
         String[] sentence = simpleLogics.sentenceDivide(sntnce);
         this.sentence = sentence;
     }
 
     public String getSubjectTranslated(String senten) {
-
         SimpleLogics simpleLogics = new SimpleLogics();
         simpleLogics.setSubjectValue(senten);
         String subject = simpleLogics.getSubject();
-        int subjectValue = simpleLogics.getSubjectValue();
+        subjectValue = simpleLogics.getSubjectValue();
+        
+        log.info("Subject Value in TranslateSimple "+subjectValue);
+        
         int i = 0;
         while (englishSubject.length > i) {
             if (subject.equals(englishSubject[i])) {
                 if (subjectValue == 0) {
                     wordSubject = sinhalaSubject[i];
-                }else if(subjectValue == 1){
+                } else if (subjectValue == 1) {
                     wordSubject = sinhalaSubjectPlurelComons[i];
                 }
                 break;
@@ -60,7 +65,7 @@ public class TranslateSimple implements Translate {
             }
             i++;
         }
-
+      //  SimpleLogics.SubjectValue = subjectValue;
         return wordSubject;
     }
 
@@ -77,19 +82,16 @@ public class TranslateSimple implements Translate {
     }
 
     @Override
-    public String getSinhalaMeaning(String sentec) {
-        simpleLogics.setSubjectValue(sentec);
+    public  String getSinhalaMeaning(String sentec) {
+        simpleLogics.setSubjectValue(sentec);        
         simpleLogics.setTence(sentec);
-        TranslateSimple translateSimple = new TranslateSimple();
-        translateSimple.setSentence(sentec);
-        translateSimple.tence = simpleLogics.getTence(sentec);
-        translateSimple.getSubjectTranslated(sentec);
+        setSentence(sentec);
+        tence = simpleLogics.getTence(sentec);
+       // getSubjectTranslated(sentec);
         String objectValueDefiner = "";
-        String sentenceEnd = "";
-
-        String sinhalaMeaning = translateSimple.getSubjectTranslated(sentec) + " " + translateSimple.getObjectTranslated()
+        String sinhalaMeaning = getSubjectTranslated(sentec) + " " + getObjectTranslated()
                 + objectValueDefiner + " " + simpleLogics.getVerbMeaning() + ".";
-
+        simpleLogics.setSimpleLogicsSubjectValue(0);
         return sinhalaMeaning;
     }
 }

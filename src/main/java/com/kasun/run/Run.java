@@ -16,7 +16,7 @@ public class Run {
 
         String sentence = "hi";
 
-        while (!(sentence.equals(""))) {
+        while (!(sentence.equals(" "))) {
 
             System.out.print("Enter English sentence here : ");
             @SuppressWarnings("resource")
@@ -27,7 +27,7 @@ public class Run {
             if (sentenceDitector.ditectSentence(sentence).equals("simple")) {
                 meaning = translateSimple.getSinhalaMeaning(sentence);
             } else {
-                meaning = translateCountinues.getSinhalaMeaning(sentence);
+                meaning = translateCountinues.getMeaning(sentence);
             }
             System.out.print("Meaning is : ");
             System.out.println(meaning);
