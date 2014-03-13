@@ -24,11 +24,11 @@ public class Run {
             sentence = scan.nextLine();
 
             String meaning;
-            if (sentenceDitector.ditectSentence(sentence).equals("simple")) {
-                meaning = translateSimple.getSinhalaMeaning(sentence);
-            } else {
+//            if (sentenceDitector.ditectSentence(sentence).equals("simple")) {
+//                meaning = translateSimple.getSinhalaMeaning(sentence);
+//            } else {
                 meaning = translateCountinues.getMeaning(sentence);
-            }
+         //   }
             System.out.print("Meaning is : ");
             System.out.println(meaning);
         }

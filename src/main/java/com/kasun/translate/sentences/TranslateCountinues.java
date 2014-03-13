@@ -3,7 +3,9 @@ package com.kasun.translate.sentences;
 import java.util.ArrayList;
 
 import com.kasun.logics.translate.ContinuesLogics;
-import com.kasun.process.object.ProcesObject;
+import com.kasun.process.ProcesObject;
+import com.kasun.process.ProcesSubject;
+import com.kasun.process.ProsesVerb;
 import com.kasun.sentence.Sentence;
 import com.kasun.translate.Translate;
 
@@ -146,12 +148,15 @@ public class TranslateCountinues implements Translate {
 
     public String getMeaning(String sentence) {
         ProcesObject procesObject = new ProcesObject();
+        ProsesVerb prosesVerb = new ProsesVerb();
         Sentence senten = logic.splitAndMakeSentence(sentence);
         setSen(senten);
         // String objectValue = getObjectValue(sentence);
         String objectValueDefiner = "";
         String sentenceEnd = getSentenceEnd(sentence);
         String sinhalaMeaning;
+        
+        ProcesSubject procesSubject = new ProcesSubject();
 
      //   String[] sinhalaMeanOfOb = getObjectSinhalaMeaning();
 
@@ -164,10 +169,16 @@ public class TranslateCountinues implements Translate {
 
         if (isTimeInObject()) {
             sinhalaMeaning = getSubjectMeaning() + " " + getTimeMeaningFromObject() + " " + procesObject.objMean(sentence)
-                    + objectValueDefiner + getVerbMeaning()+ ".";
-        } else {
-            sinhalaMeaning = getSubjectMeaning() + " " +procesObject.objMean(sentence) + objectValueDefiner + getVerbMeaning() + " "
-                    + sentenceEnd + ".";
+                    + objectValueDefiner + prosesVerb.verbMeanOfSentence(sentence)+ ".";
+        } 
+//        else {
+//            sinhalaMeaning = getSubjectMeaning() + " " +procesObject.objMean(sentence) + objectValueDefiner + getVerbMeaning() + " "
+//                    + sentenceEnd + ".";
+//        }
+        
+        else {
+            sinhalaMeaning = procesSubject.getSubjectMean(sentence)  +procesObject.objMean(sentence)  + prosesVerb.verbMeanOfSentence(sentence) ;
+
         }
 
         senten = null;
