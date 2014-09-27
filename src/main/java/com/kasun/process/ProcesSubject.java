@@ -5,47 +5,48 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.kasun.logics.translate.ContinuesLogics;
+import com.kasun.process.logics.ProcessLogic;
 
 public class ProcesSubject {
+    
+    public boolean singuler = false;
 
     private static final Logger log = LoggerFactory.getLogger(ProcesSubject.class);
 
-    public ArrayList<String> subAsArrayList(String sentence) {
-        ContinuesLogics continuesLogics = new ContinuesLogics();
-        String[] words = continuesLogics.splitSentence(sentence);
+    public ArrayList<String> subAsArrayList(String sentence, String [] pattern) {
+        String[] words = ProcessLogic.splitSentence(sentence);
 
         ArrayList<String> subAsArrayList = new ArrayList<String>();
-
-        ProcessLogic processLogic = new ProcessLogic();
 
         int i = 0;
-        while (i < words.length && !(processLogic.isABeVerb(words[i])) && !(processLogic.isAHvHs(words[i]))) {
+       
+        while (i < words.length && !(ProcessLogic.isABeVerb(words[i])) && !(ProcessLogic.isAHvHs(words[i])) && !(ProcessLogic.isNormalVerb(words[i])) && !(ProcessLogic.isDoDoes(words[i])) && !(ProcessLogic.isWill(words[i]))) {
             subAsArrayList.add(words[i]);
+            log.info("Sub "+words[i]);
+            log.info("ProcessLogic.isDoDoes(words[i]) "+ProcessLogic.isDoDoes(words[i]));
             i++;
         }
-
         return subAsArrayList;
     }
+    
+      
+    public String getSubjectMean(String sentence, String [] pattern) {
 
-    public String getSubjectMean(String sentence) {
-        ProcessLogic processLogic = new ProcessLogic();
-
-        ArrayList<String> subAsArrayList = new ArrayList<String>();
-        subAsArrayList = subAsArrayList(sentence);
-        String[] arr = new String[subAsArrayList.size()];
-        subAsArrayList.toArray(arr);
+//        ArrayList<String> subAsArrayList = new ArrayList<String>();
+//        subAsArrayList = Process.subToArrayList(sentence,pattern);
+        String[] arr = Process.subToArray(sentence,pattern);
+//        subAsArrayList.toArray(arr);
 
         String mean = "";
 
         int i = 0;
 
         while (i < arr.length) {
-            if (processLogic.isOwnerShip(arr[i])) {
-                mean = mean + " " + processLogic.ownerShipMean(arr[i]) + " " + processLogic.getAnyWordMeaning(arr[i + 1]) + " ";
+            if (ProcessLogic.isOwnerShip(arr[i])) {
+                mean = mean + " " + ProcessLogic.ownerShipMean(arr[i]) + " " + ProcessLogic.getAnyWordMeaning(arr[i + 1]) + " ";
                 i++;
             } else {
-                mean = mean + " " + processLogic.getAnyWordMeaning(arr[i]) + " ";
+                mean = mean + " " + ProcessLogic.getAnyWordMeaning(arr[i]) + " ";
             }
             i++;
         }

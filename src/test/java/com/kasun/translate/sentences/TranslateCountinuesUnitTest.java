@@ -4,11 +4,11 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.kasun.translate.sentences.TranslateCountinues;
+import com.kasun.translate.Translate;
 
 public class TranslateCountinuesUnitTest {
 
-    TranslateCountinues translateCountinues = new TranslateCountinues();
+    Translate translate = new Translate();
 
 //    @Test(dataProvider = "addDataProvider")
 //    public void testGetObjectValue(String sentence, String expected) {

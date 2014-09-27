@@ -9,27 +9,32 @@ project.ext {
 	//productName = 'rest'
 	deployDir  = System.getenv()['DEPLOY_DIR']
 	projectName = 'translator'/* default war plugin make it as root folder name"*/
+    jsName = '/resources/js/test.js'
 }
 
 repositories {
-		mavenCentral()
+		mavenCentral()		
+//		ivy {
+//			// URL can refer to a local directory
+//			url "../local-repo"
+//		}
 }
         
 dependencies {
 	compile		'org.slf4j:slf4j-api:' + slfjVersion,
 				'org.slf4j:slf4j-log4j12:' + slfjVersion,
 				'log4j:log4j:' + logjVersion,
-			//	'org.xerial:sqlite-jdbc:' + sqliteVersion,	
+				'mysql:mysql-connector-java:5.1.28',
+				'com.googlecode.json-simple:json-simple:1.1.1',
 				'org.springframework:spring-core:' + springVersion, 
 				'org.springframework:spring-web:' + springVersion,
 				'org.springframework:spring-webmvc:'  + springVersion,
+				'edu.stanford.nlp:stanford-parser:' + stanfordParserVersion,
+				'edu.washington.cs.knowitall.stanford-corenlp:stanford-parse-models:' + stanfordParseModelsVersion,				
 				'org.springframework:spring-context:'  + springVersion,
 				'org.codehaus.jackson:jackson-mapper-asl:' + jacksonVersion,
 				'taglibs:standard:' + tagLib
-			//	'jstl:jstl:1.1.2'
-			//	'javax.transaction:jta:1.1'
-			
-	
+				
 
 testCompile		'junit:junit:4.11',
 				'org.testng:testng:6.8.7'
@@ -50,7 +55,17 @@ task deploy << {/* << ignore the function in normal build*/
 	}	
 }
 
-
+task jscp << {   
+       println "Deleting js file"   
+       ant.delete(file: "${deployDir}/" + projectName+jsName) //deleting file    
+       println "Copping js file"   
+       copy{   
+           from 'src/main/webapp/resources/js'  
+           into "${deployDir}/"+projectName+'/resources/js'
+           include 'test.js'
+       }
+    }
+    
 task wrapper(type: Wrapper) {
    gradleVersion = '1.11'
 }
